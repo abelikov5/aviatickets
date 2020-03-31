@@ -192,4 +192,18 @@ h1 {
   font-weight: bold;
 }
 
+.no_tickets_on_request {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  background-color: #f2f2f2;
+  display: table;
+}
+
+.no_tickets_on_request p {
+  text-align: center;
+  vertical-align: middle;
+  display:table-cell!important;
+  font-weight: bold;
+}
 

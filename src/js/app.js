@@ -2,11 +2,57 @@ import locations from './store/location';
 import axios from 'axios';
 import '../css/style.css';
 import './plugins';
+
 import dateValue from './store/current_date';
+import curActial from './store/currency';
 // import { getMonth, getDate } from 'date-fns';
 import autoprefixer from 'autoprefixer';
 import config from './config/apiConfig';
 
+curActial();
+
+let response = {};
+
+let curCurr = {
+	curName: '$',
+};
+
+
+document.querySelector("select").addEventListener('change', function (e) {
+	if (e.target.value == '€')
+		flightUploadHTML(response, curCurr.eur, '€');
+	else if (e.target.value == '₽')
+		flightUploadHTML(response, curCurr.rub, '₽');
+	else if (e.target.value == '$')	
+		flightUploadHTML(response);
+
+	// if (e.target.value == '₽') {
+	// 	let arrCurr = document.querySelectorAll('.fly_card .price_flight');
+	// 	curCurr.src = parseInt(arrCurr[i].textContent);
+
+	// }
+	// curCurr.dest = curCurr.curName == '$' ? 1 : 0;
+	// curCurr.curName = e.target.value;
+
+	
+	// let i = 0;
+	// curCurr.src = parseInt(arrCurr[i].textContent);
+	
+	// arrCurr[i].innerHTML = `${curCurr.curName}`
+
+	// console.log(arrCurr);
+    // export default curCurr;
+})
+
+// const curCurr = document.querySelector("select");
+// curCurr.addEventListener('change', function (e) {
+//     console.log("Changed to: " + e.target.value)
+// })
+
+
+
+
+// console.log("текущее значение селектора", curCurr);
 // console.log(config);
 
 function findCountry ({countries}, countryCode) {
@@ -78,11 +124,19 @@ function convertDate(str) {
 	return arr[2] + ' ' + arr[1] + ' ' + arr[0];
 }
 
-function flightUploadHTML (resp) {
+function flightUploadHTML (resp, multip = 1, cur = '$') {
 	let flightCardStr = '';
 	const arrData = Object.entries(resp.data.data);
-	console.log(arrData);
+	if (!arrData.length)
+	{
+		console.log(arrData.length);
+		flightSection.innerHTML = ` <div class="no_tickets_on_request"><p>Sorry, dear!) Theare no tickets on your request. Let's try another date or direction >>>></p></div>`;
+		document.getElementsByClassName('no_tickets_on_request').classList += 'd_block';
+		return ;
+	}
+	// console.log(arrData);
 	for (let i = 0; i < arrData.length; i++) {
+		console.log(curCurr);
 		const aircompanyCode = arrData[i][1].airline;
 		const orCode = arrData[i][1].origin;
 		const arrCode = arrData[i][1].destination;
@@ -105,7 +159,7 @@ function flightUploadHTML (resp) {
             ${convertDate(arrData[i][0])}
           </div>
           <div class="price_flight">
-            ${arrData[i][1].price}$
+            ${Math.ceil(arrData[i][1].price * multip)} ${cur}
           </div>
         </div>  
         <div class="change_flight">
@@ -123,13 +177,19 @@ function flightUploadHTML (resp) {
 	// console.log(resp)
 }
 
+
+
 async function prices(params) {
 	try {
-		const response = await axios.get(`${config.url}/prices/cheap`, {
-			params,
+			await axios.get(`${config.url}/prices/cheap`, {
+				params,
 		})
-		.then( (res) => flightUploadHTML(res));
+		.then( function (res) {
+			response = JSON.parse(JSON.stringify(res));
 
+			// console.log("res = ", response);
+			flightUploadHTML(res);
+		})
 	} catch (err) {
 		console.log(err);  
 	}
@@ -138,7 +198,7 @@ async function prices(params) {
 
 form.addEventListener('submit', function (e) {
 	e.preventDefault();
-	console.log(form.elements[0].value, form.elements[2].value.slice(0,7));
+	// console.log(form.elements[0].value, form.elements[2].value.slice(0,7));
 	const origin = form.elements[0].value;
 	const destination = form.elements[1].value;
 	const depart_date = form.elements[2].value.slice(0,7);
@@ -157,3 +217,5 @@ form.addEventListener('submit', function (e) {
 	//    return_date,
 	// })
 })
+
+export default curCurr;

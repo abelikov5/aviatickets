@@ -13,24 +13,24 @@ class Locations {
             this.api.countries(),
             this.api.cities(), 
             this.api.airlines(),
+            // this.api.curr(),
         ]);
-        const [countries, cities, airlines] = response;
+        const [countries, cities, airlines, curr] = response;
         this.countries = countries;
         this.cities = cities;
         this.airlines = airlines;
-        // console.log(response);
+        // this.curr = curr;
+        console.log(response);
 
         return response;
     }
     async fetchTickets(params) {
-        console.log(params);
         const response = await this.api.prices(params);
-        console.log(response); 
-
     }
 }
 
 const locations = new Locations(api);
+// console.log('locations', locations.curr);
 
 
 export default locations;

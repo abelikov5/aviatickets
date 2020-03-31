@@ -23,15 +23,6 @@ class Api {
             return Promise.reject(err);
         }
     }
-    // async cities() {
-    //     try {
-    //         const response = await axios.get(`${this.url}/cities`);
-    //         return response.data;
-    //     } catch {
-    //         console.log(err);
-    //         return Promise.reject(err);
-    //     }
-    // }
     async airlines() {
         try {
             const response = await axios.get(`${this.url}/airlines`);
@@ -41,17 +32,15 @@ class Api {
             return Promise.reject(err);
         }
     }
-    // async prices(param) {
-    //     try {
-    //         const response = await axios.get(`${this.url}/prices/cheap`, {
-    //             params,
-    //         });
-    //         return response.data;
-    //     } catch {
-    //         console.log(err);
-    //         return Promise.reject(err);
-    //     }
-    // }
+    async curr() {
+        try {
+            const response = await axios.get(`${this.curr}`);
+            return response.data;
+        } catch {
+            console.log(err);
+            return Promise.reject(err);
+        }
+    }
 
 }
 
