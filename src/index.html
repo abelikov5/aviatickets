@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <title>AviaTickets</title>
+</head>
+<body>
+  <header class="boxShadow">
+    <div class="container m_auto d_flex header_container">
+      <div class="logo d_flex">
+        <div class="logo_icon">
+          <i class="material-icons">flight_takeoff</i>
+        </div>
+        <div class="logo_text">
+                  AviaTickets
+        </div>
+      </div>
+      <div class="wrap_cur d_flex">
+        <div class="select_cur">
+          <select name="" id="">
+            <option value="RUR">₽ - RUB</option>
+            <option value="USD">$ - USD</option>
+            <option value="EUR">€ - EUR</option>
+          </select>
+        </div>
+        <div class="arrow_down">
+          »
+        </div>
+      </div>
+
+
+    </div>
+  </header>
+<div class="container">
+
+
+  <div class="form_search m_auto">
+    <form action="" >
+      <div class="head_form">
+        <h1>Search tickets:</h1>
+      </div>
+      Origin:
+      <input type="text" list="pasta" autocomplete=off>
+      <datalist id="pasta">
+
+      </datalist>
+      Destination:
+      <input type="text" list="pasta" autocomplete=off>
+      Depart date:
+      <input type="date"  value="" min="" id="depart_date" placeholder="depature date">
+      Arrival date:
+      <input type="date" value="" min="">
+      <div class="button_form">
+        <button class="search" type="submit"> Search  ➤</button>
+        <button class="reset" type="reset">Reset  ✖</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+<section class="fly"> 
+  <div class="container m_auto">
+    <div class="wrap_fly" id="section_fly">
+      <div class="fly_card">
+        <div class="aero_comp">
+          <img src="http://pics.avs.io/100/30/SU.png" alt="">
+          Aeroflot Russian Airlines
+        </div>
+        <div class="from_to d_flex jc_space_between">
+          <div class="departure">
+            МОСКВА  <i class="tiny material-icons">flight_takeoff</i>
+          </div>
+          <div class="arrival">
+            <i class="material-icons">flight_land</i> БАРСЕЛОНА
+          </div>
+        </div>
+        <div class="date_price d_flex jc_space_between">
+          <div class="date_of_departure">
+            28Jul2020
+          </div>
+          <div class="price_flight">
+            10000315$
+          </div>
+        </div>  
+        <div class="change_flight">
+          Transfers: 1, flight number: 178
+        </div>
+
+          
+
+      </div>
+      <div class="fly_card">
+      </div>
+    <!-- </div>  
+      <div class="wrap_fly d_flex"> -->
+        <div class="fly_card">
+        </div>
+        <div class="fly_card">
+        </div>
+
+      </div>
+
+
+  </div>
+</section>   
+
+
+</body>
+</html>

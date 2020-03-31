@@ -1,0 +1,9 @@
+@media (max-width: 450px) {
+ 
+    .form_search.m_auto {
+        width: 300px;
+        border: none;
+        box-shadow: none;
+        padding: 10px;
+    }
+}
