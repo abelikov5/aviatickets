@@ -6,4 +6,12 @@
         box-shadow: none;
         padding: 10px;
     }
+    .fly {
+        padding: 5px;
+    }
+
+    .fly_card {
+        width: 100%;
+    }
+
 }

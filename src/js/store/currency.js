@@ -16,9 +16,7 @@ async function curActial() {
 		const response = await axios.get(`${config.curr}`)
 		.then( function (response) {
             curCurr.rub = Math.ceil(response.data.Valute.USD.Value);
-            curCurr.eur = (response.data.Valute.EUR.Value / curCurr.rub).toFixed(2);
-			// console.log("res = ", curCurr);
-			// flightUploadHTML(res);
+            curCurr.eur = (curCurr.rub / response.data.Valute.EUR.Value).toFixed(2);
 		})
 	} catch (err) {
 		console.log(err);  

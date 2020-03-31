@@ -9,9 +9,17 @@ import curActial from './store/currency';
 import autoprefixer from 'autoprefixer';
 import config from './config/apiConfig';
 
+
+
 curActial();
 
 let response = {};
+
+function sortArr(arr) {
+	let res = JSON.parse(JSON.stringify(arr));
+
+	res.sort(function(a, b){return a - b});
+}
 
 let curCurr = {
 	curName: '$',
@@ -19,6 +27,7 @@ let curCurr = {
 
 
 document.querySelector("select").addEventListener('change', function (e) {
+	// console.log(response.data.data[0].price);
 	if (e.target.value == '€')
 		flightUploadHTML(response, curCurr.eur, '€');
 	else if (e.target.value == '₽')
@@ -26,34 +35,8 @@ document.querySelector("select").addEventListener('change', function (e) {
 	else if (e.target.value == '$')	
 		flightUploadHTML(response);
 
-	// if (e.target.value == '₽') {
-	// 	let arrCurr = document.querySelectorAll('.fly_card .price_flight');
-	// 	curCurr.src = parseInt(arrCurr[i].textContent);
-
-	// }
-	// curCurr.dest = curCurr.curName == '$' ? 1 : 0;
-	// curCurr.curName = e.target.value;
-
-	
-	// let i = 0;
-	// curCurr.src = parseInt(arrCurr[i].textContent);
-	
-	// arrCurr[i].innerHTML = `${curCurr.curName}`
-
-	// console.log(arrCurr);
-    // export default curCurr;
 })
 
-// const curCurr = document.querySelector("select");
-// curCurr.addEventListener('change', function (e) {
-//     console.log("Changed to: " + e.target.value)
-// })
-
-
-
-
-// console.log("текущее значение селектора", curCurr);
-// console.log(config);
 
 function findCountry ({countries}, countryCode) {
 	// console.log(countries, countryCode);
@@ -129,14 +112,14 @@ function flightUploadHTML (resp, multip = 1, cur = '$') {
 	const arrData = Object.entries(resp.data.data);
 	if (!arrData.length)
 	{
-		console.log(arrData.length);
+		// console.log(arrData.length);
 		flightSection.innerHTML = ` <div class="no_tickets_on_request"><p>Sorry, dear!) Theare no tickets on your request. Let's try another date or direction >>>></p></div>`;
 		document.getElementsByClassName('no_tickets_on_request').classList += 'd_block';
 		return ;
 	}
 	// console.log(arrData);
 	for (let i = 0; i < arrData.length; i++) {
-		console.log(curCurr);
+		// console.log(curCurr);
 		const aircompanyCode = arrData[i][1].airline;
 		const orCode = arrData[i][1].origin;
 		const arrCode = arrData[i][1].destination;

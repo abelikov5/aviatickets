@@ -3,7 +3,7 @@
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 }
-@import url('_media.css');
+
 
 header {
   width: 100%;
@@ -135,14 +135,10 @@ h1 {
   color: black;
 }
 
-/* fly cards */
 .fly {
   padding: 50px;
 }
 
-/* .wrap_fly_card {
-
-} */
 
 .wrap_fly {
   display: flex;
@@ -206,4 +202,6 @@ h1 {
   display:table-cell!important;
   font-weight: bold;
 }
+
+@import url('_media.css');
 
